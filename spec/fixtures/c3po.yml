@@ -1,0 +1,8 @@
+:development:
+  api:
+    provider: :bing
+    bing: "api_key"
+:test:
+  api:
+    provider: :bing
+    bing: "prod_api_key"
