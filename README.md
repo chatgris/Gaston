@@ -32,7 +32,7 @@ Create an initializer. You can define an environment with the `env` method, and 
 ``` ruby
 Gaston.configure do |config|
   config.env = Rails.env
-  config.files = Dir[Rails.root.join("config/gaston/**/*.yml"]
+  config.files = Dir[Rails.root.join("config/gaston/**/*.yml")]
 end
 Config = Gaston.retrieve
 ```
