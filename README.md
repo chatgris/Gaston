@@ -13,7 +13,7 @@ Install it with rubygems:
 With bundler, add it to your `Gemfile`:
 
 ``` ruby
-gem "gaston", "~>0.0.1"
+gem "gaston", "~>0.0.2"
 ```
 
 Always specify environment in yaml :
