@@ -21,7 +21,7 @@ Always specify environment in yaml :
 Environment values are merged on `:gaston` values. `:gaston` is optional.
 
 ``` yaml
-:gaston
+:gaston:
   api:
     state: "awesome"
 :development:
