@@ -18,7 +18,12 @@ gem "gaston", "~>0.0.1"
 
 Always specify environment in yaml :
 
+Environment values are merged on `:gaston` values. `:gaston` is optional.
+
 ``` yaml
+:gaston
+  api:
+    state: "awesome"
 :development:
   api:
     key: "api_key"
@@ -40,7 +45,8 @@ Config = Gaston.retrieve
 Querying a config key :
 
 ``` ruby
-Config.db.user
+Config.api.state # => 'awesome'
+Config.api.key # => 'api_key'
 ```
 
 Note on Patches/Pull Requests

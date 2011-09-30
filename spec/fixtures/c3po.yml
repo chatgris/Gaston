@@ -1,8 +1,9 @@
-:development:
+:gaston:
   api:
     provider: :bing
+:development:
+  api:
     bing: "api_key"
 :test:
   api:
-    provider: :bing
     bing: "prod_api_key"

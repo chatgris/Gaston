@@ -1,0 +1,7 @@
+:gaston:
+  chuck:
+    steven: :seagal
+    norris: "gaston"
+:test:
+  chuck:
+    norris: "prod_api_key"

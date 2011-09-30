@@ -6,6 +6,7 @@ class Gaston
   include Singleton
   require 'gaston/configuration'
   require 'gaston/store'
+  require 'gaston/parse'
 
   # Parse yml config files, merge them, and store into
   # gaston::Store
@@ -13,14 +14,15 @@ class Gaston
   # @since 0.0.1
   #
   def store
-    @store ||= Gaston::Store.new (files.inject({}) {|hash, config|
-      parse = YAML.load_file(config)[env]
-      hash.merge(parse) if parse
-    })
+    @store ||= Gaston::Store.new(hash_from_files)
   end
 
   class << self
 
+    # Access to Gaston::Store.
+    #
+    # @since 0.0.1
+    #
     def retrieve
       self.instance.store
     end
@@ -60,6 +62,16 @@ class Gaston
   #
   def env
     Gaston::Configuration.env.to_sym
+  end
+
+  # Return one merged hash from yaml config files.
+  #
+  # @return [ Hash ]
+  #
+  # @since 0.0.2
+  #
+  def hash_from_files
+    @hash_from_files ||= Gaston::Parse.new(files, env).to_hash
   end
 
 end # Gaston
