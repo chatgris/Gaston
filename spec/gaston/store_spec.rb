@@ -44,6 +44,7 @@ describe Gaston::Store do
     end
 
     it 'should be recursive' do
+      multi_store.nested.one.should eq(:level)
       multi_store.nested.nested.two.should eq(["warp", :zone])
     end
 
