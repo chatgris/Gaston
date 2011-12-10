@@ -6,6 +6,8 @@ Gaston is a dead simple Ruby config store. Write your config in yaml files, and 
 Installation
 ------------
 
+Ruby 1.9.2 is required.
+
 Install it with rubygems:
 
     gem install gaston
@@ -13,7 +15,7 @@ Install it with rubygems:
 With bundler, add it to your `Gemfile`:
 
 ``` ruby
-gem "gaston", "~>0.0.2"
+gem "gaston", "~>0.1.0"
 ```
 
 Always specify environment in yaml :
@@ -36,17 +38,16 @@ Create an initializer. You can define an environment with the `env` method, and 
 
 ``` ruby
 Gaston.configure do |config|
-  config.env = Rails.env
-  config.files = Dir[Rails.root.join("config/gaston/**/*.yml")]
+  gaston.env = Rails.env
+  gaston.files = Dir[Rails.root.join("config/gaston/**/*.yml")]
 end
-Config = Gaston.retrieve
 ```
 
 Querying a config key :
 
 ``` ruby
-Config.api.state # => 'awesome'
-Config.api.key # => 'api_key'
+Gaston.api.state # => 'awesome'
+Gaston.api.key # => 'api_key'
 ```
 
 Note on Patches/Pull Requests

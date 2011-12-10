@@ -19,14 +19,6 @@ class Gaston
 
   class << self
 
-    # Access to Gaston::Store.
-    #
-    # @since 0.0.1
-    #
-    def retrieve
-      self.instance.store
-    end
-
     # Define a configure block.
     #
     # Delegates to Gaston::Configuration
@@ -42,7 +34,12 @@ class Gaston
     # @since 0.0.1
     #
     def configure(&block)
-      Gaston::Configuration.configure(&block)
+      self::Configuration.configure(&block)
+      self.instance.store.each do |key, value|
+        define_singleton_method key do
+          value
+        end
+      end
     end
   end # self
 

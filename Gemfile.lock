@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gaston (0.0.1)
+    gaston (0.1.0)
 
 GEM
   remote: http://rubygems.org/
