@@ -37,7 +37,7 @@ Environment values are merged on `:gaston` values. `:gaston` is optional.
 Create an initializer. You can define an environment with the `env` method, and specify config files with the `files` method. Default `env` is `:development`.
 
 ``` ruby
-Gaston.configure do |config|
+Gaston.configure do |gaston|
   gaston.env = Rails.env
   gaston.files = Dir[Rails.root.join("config/gaston/**/*.yml")]
 end
