@@ -15,7 +15,7 @@ Install it with rubygems:
 With bundler, add it to your `Gemfile`:
 
 ``` ruby
-gem "gaston", "~>0.1.0"
+gem "gaston", "~>0.1.1"
 ```
 
 Always specify environment in yaml :
