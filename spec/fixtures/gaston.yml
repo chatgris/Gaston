@@ -2,6 +2,8 @@
   chuck:
     steven: :seagal
     norris: "gaston"
+  spk:
+    norris: "bim"
 :test:
   chuck:
     norris: "prod_api_key"

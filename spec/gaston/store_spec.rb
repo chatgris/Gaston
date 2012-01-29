@@ -5,7 +5,9 @@ describe Gaston::Store do
   let(:store) { Gaston::Store.new({:config => 'test'})}
   let(:multi_store) do
     Gaston::Store.new({:config => 'test',
-                       :nested => {:one => :level, :nested => {:two => ['warp', :zone]}}
+                       :nested => {:one => :level, :nested => {:two => ['warp', :zone]},
+                       :spk => {:one => :bim}
+    }
     })
   end
 
@@ -46,6 +48,10 @@ describe Gaston::Store do
     it 'should be recursive' do
       multi_store.nested.one.should eq(:level)
       multi_store.nested.nested.two.should eq(["warp", :zone])
+    end
+
+    it 'should return bim!' do
+      multi_store.nested.spk.one.should eq :bim
     end
 
   end

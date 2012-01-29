@@ -12,4 +12,12 @@ describe Gaston do
   it 'should return api_key from api config from Gaston constant' do
     Gaston.api.provider.should eq(:bing)
   end
+
+  it 'should be success' do
+    Gaston.chuck.norris.should eq "facts"
+  end
+
+  it 'should be success' do
+    Gaston.spk.norris.should eq "bim"
+  end
 end

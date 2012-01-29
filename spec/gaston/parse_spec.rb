@@ -23,5 +23,9 @@ describe Gaston::Parse do
     it 'should override default values' do
       parse.to_hash['chuck']['norris'].should eq("prod_api_key")
     end
+
+    it 'should be success' do
+      parse.to_hash['spk']['norris'].should eq("bim")
+    end
   end
 end
