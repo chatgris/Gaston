@@ -3,6 +3,7 @@ require 'spec_helper'
 
 describe Gaston::Store do
   let(:store) { Gaston::Store.new({:config => 'test'})}
+  let(:hash_store) { Gaston::Store.new({:values => 'test'})}
   let(:multi_store) do
     Gaston::Store.new({:config => 'test',
                        :nested => {:one => :level, :nested => {:two => ['warp', :zone]},
@@ -38,6 +39,12 @@ describe Gaston::Store do
 
     end
 
+  end
+
+  describe "methods defined on Hash" do
+    it "should add values method" do
+      hash_store.values.should be_empty
+    end
   end
 
   describe 'multi level store' do

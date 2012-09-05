@@ -11,7 +11,11 @@ class Gaston
     def initialize(hash)
       hash ||= {}
       hash.each do |key, value|
-        value.is_a?(Hash) ? self[key] = Gaston::Store.new(value) : self[key] = value
+        if hash.respond_to? key
+          warn "#{key} method already exists on Hash, value: #{value}"
+        else
+          value.is_a?(Hash) ? self[key] = Gaston::Store.new(value) : self[key] = value
+        end
       end
     end
 
