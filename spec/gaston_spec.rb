@@ -5,7 +5,7 @@ describe Gaston do
   before do
     Gaston.configure do |gaston|
       gaston.env = :test
-      gaston.files = Dir[File.join(File.dirname(__FILE__), 'fixtures/**/*.yml')]
+      gaston.files = Dir[File.join(File.dirname(__FILE__), 'fixtures/**/*.yml')].sort
     end
   end
 
@@ -14,7 +14,7 @@ describe Gaston do
   end
 
   it 'should be success' do
-    Gaston.chuck.norris.should eq "facts"
+    Gaston.chuck.norris.should eq "prod_api_key"
   end
 
   it 'should be success' do
