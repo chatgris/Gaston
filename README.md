@@ -22,6 +22,8 @@ Always specify environment in yaml :
 
 Environment values are merged on `:gaston` values. `:gaston` is optional.
 
+You can use erb inside values.
+
 ``` yaml
 :gaston:
   api:
@@ -31,7 +33,7 @@ Environment values are merged on `:gaston` values. `:gaston` is optional.
     key: "api_key"
 :test:
   api:
-    key: "prod_api_key"
+    key: <%= ENV["API_KEY"] %>
 ```
 
 Create an initializer. You can define an environment with the `env` method, and specify config files with the `files` method. Default `env` is `:development`.
