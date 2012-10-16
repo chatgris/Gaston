@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.authors      = ["chatgris"]
   s.email        = "jboyer@af83.com"
   s.homepage     = "https://github.com/chatgris/gaston"
-  s.summary      = "[Dead simple Ruby config store.]"
-  s.description  = "[Dead simple Ruby config store.]"
-  s.files        = `git ls-files app lib`.split("\n")
+  s.summary      = "Dead simple Ruby config store."
+  s.description  = "Dead simple Ruby config store."
+  s.files        = `git README.md lib LICENSE`.split("\n")
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
   s.add_development_dependency "rspec", "~>2.8"
