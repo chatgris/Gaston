@@ -36,6 +36,8 @@ You can use erb inside values.
     key: <%= ENV["API_KEY"] %>
 ```
 
+Since verion `0.2.0`, gaston also accept json files.
+
 Create an initializer. You can define an environment with the `env` method, and specify config files with the `files` method. Default `env` is `:development`.
 
 ``` ruby
