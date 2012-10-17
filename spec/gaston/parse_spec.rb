@@ -4,6 +4,7 @@ require 'spec_helper'
 describe Gaston::Parse do
   let(:gaston_file) { file_path('gaston.yml')}
   let(:env_file) { file_path('env.yml')}
+  let(:json_file) { file_path('mysql.json') }
 
   context 'without default values' do
     let(:parse) { Gaston::Parse.new([env_file], :test)}
@@ -26,6 +27,14 @@ describe Gaston::Parse do
 
     it 'should be success' do
       parse.to_hash['spk']['norris'].should eq("bim")
+    end
+  end
+
+  context 'json' do
+    let(:parse) { Gaston::Parse.new([json_file], :preprod)}
+
+    it 'should be success' do
+      parse.to_hash[:host].should eq('localhost')
     end
   end
 end
