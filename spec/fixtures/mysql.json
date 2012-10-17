@@ -1,0 +1,23 @@
+{
+  "gaston": {
+    "host": "localhost",
+    "adapter": "mysql2",
+    "username": "root",
+    "password": "xxx",
+    "port": 3306
+  },
+  "preprod": {
+    "host": "localhost",
+    "adapter": "mysql2",
+    "username": "mall",
+    "password": "xxx",
+    "port": 3306
+  },
+  "kwangaroo": {
+    "host": "localhost",
+    "adapter": "mysql2",
+    "username": "root",
+    "password": "xxx",
+    "port": 3308
+  }
+}

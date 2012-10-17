@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'erb'
+require 'json'
 
 class Gaston
   class Parse
@@ -14,7 +15,7 @@ class Gaston
     def initialize(files, env)
       @env = env
       @hash = files.inject({}) do |hash, file|
-        @parse = YAML.load(ERB.new(File.read(file)).result) || {}
+        parse(file)
         hash.merge(deep_merge_hash(default_values, env_values))
       end
     end
@@ -69,6 +70,15 @@ class Gaston
         end
       end
       hash1
+    end
+
+    def parse(file)
+      erb = ERB.new(File.read(file)).result
+      if File.extname(file) == '.json'
+        @parse = JSON.parse(erb, :symbolize_names => true) || {}
+      else
+        @parse = YAML.load(erb) || {}
+      end
     end
   end
 end
