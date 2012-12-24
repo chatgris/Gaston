@@ -1,0 +1,111 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Gaston</title>
+  <meta name="description" content="Dead simple Ruby config store.">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Gaston</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Dead simple Ruby config store.</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/chatgris/Gaston/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/chatgris/Gaston/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/chatgris/Gaston" class="code">View Gaston on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>GASTON</h1>
+
+<p>Gaston is a dead simple Ruby config store. Write your config in yaml files, and retrieve it through one Gaston.</p>
+
+<h2>Installation</h2>
+
+<p>Ruby 1.9.2 is required.</p>
+
+<p>Install it with rubygems:</p>
+
+<pre><code>gem install gaston
+</code></pre>
+
+<p>With bundler, add it to your <code>Gemfile</code>:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s2">"gaston"</span>
+</pre></div>
+
+<p>Always specify environment in yaml :</p>
+
+<p>Environment values are merged on <code>:gaston</code> values. <code>:gaston</code> is optional.</p>
+
+<p>You can use erb inside values.</p>
+
+<div class="highlight"><pre><span class="l-Scalar-Plain">:gaston</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">api</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">state</span><span class="p-Indicator">:</span> <span class="s">"awesome"</span>
+<span class="l-Scalar-Plain">:development</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">api</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">key</span><span class="p-Indicator">:</span> <span class="s">"api_key"</span>
+<span class="l-Scalar-Plain">:test</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">api</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">key</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV["API_KEY"] %&gt;</span>
+</pre></div>
+
+<p>Since verion <code>0.2.0</code>, gaston also accept json files.</p>
+
+<p>Create an initializer. You can define an environment with the <code>env</code> method, and specify config files with the <code>files</code> method. Default <code>env</code> is <code>:development</code>.</p>
+
+<div class="highlight"><pre><span class="no">Gaston</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">gaston</span><span class="o">|</span>
+  <span class="n">gaston</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span>
+  <span class="n">gaston</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"config/gaston/**/*.yml"</span><span class="p">)</span><span class="o">]</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Querying a config key :</p>
+
+<div class="highlight"><pre><span class="no">Gaston</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">state</span> <span class="c1"># =&gt; 'awesome'</span>
+<span class="no">Gaston</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">key</span> <span class="c1"># =&gt; 'api_key'</span>
+</pre></div>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/chatgris" class="avatar"><img src="https://secure.gravatar.com/avatar/a29e7ee13933b922279527b4fdfc9220?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/chatgris">chatgris</a> maintains <a href="https://github.com/chatgris/Gaston">Gaston</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/chatgris/Gaston/tarball/master" class="tar">tar</a><a href="https://github.com/chatgris/Gaston/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
