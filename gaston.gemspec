@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version      = Gaston::VERSION
   s.authors      = ["chatgris"]
   s.email        = "jboyer@af83.com"
-  s.homepage     = "https://github.com/chatgris/gaston"
+  s.homepage     = "http://chatgris.github.com/Gaston"
   s.summary      = "Dead simple Ruby config store."
   s.description  = "Dead simple Ruby config store."
   s.files        = `git ls-files README.md lib LICENSE`.split("\n")
