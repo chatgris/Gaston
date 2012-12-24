@@ -72,6 +72,13 @@ class Gaston
       hash1
     end
 
+    # Parse yaml or json file.
+    #
+    # @param [ String ]
+    #
+    # @return [ Hash ]
+    #
+    # @since 0.2.0
     def parse(file)
       erb = ERB.new(File.read(file)).result
       if File.extname(file) == '.json'
