@@ -1,7 +1,6 @@
 # encoding: utf-8
 require 'erb'
 require 'json'
-require 'gaston/core_ext/hash/deep_merge'
 
 class Gaston
   class Parse
@@ -17,7 +16,8 @@ class Gaston
       @env = env
       @hash = files.inject({}) do |hash, file|
         parse(file)
-        hash.deep_merge(default_values).deep_merge(env_values)
+        h = deep_merge(hash, default_values)
+        deep_merge(h, env_values)
       end
     end
 
@@ -49,6 +49,23 @@ class Gaston
     #
     def env_values
       @parse[@env] || {}
+    end
+
+    # _why deep merge
+    #
+    # @return Hash
+    #
+    # @since 0.2.1
+    #
+    def deep_merge(store, other)
+      m = proc do |key, o, n|
+        if o.is_a?(Hash)
+          o.merge(n,&m)
+        else
+          store[key] = n
+        end
+      end
+      store.merge(other, &m)
     end
 
     # Parse yaml or json file.
