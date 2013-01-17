@@ -8,13 +8,12 @@ class Gaston
     #
     # @since 0.0.1
     #
-    def initialize(hash)
-      hash ||= {}
+    def initialize(hash={})
       hash.each do |key, value|
         if hash.respond_to? key
           warn "#{key} method already exists on Hash, value: #{value}"
         else
-          value.is_a?(Hash) ? self[key] = Gaston::Store.new(value) : self[key] = value
+          value.is_a?(Hash) ? self[key] = self.class.new(value) : self[key] = value
         end
       end
     end
@@ -28,7 +27,7 @@ class Gaston
     def method_missing(method, *args, &block)
       return self[method.to_s] if has_key? method.to_s
       return self[method.to_sym] if has_key? method.to_sym
-      super(method, *args, &block)
+      super
     end
 
     # Implement respond_to?
@@ -36,7 +35,7 @@ class Gaston
     # @since 0.0.1
     #
     def respond_to?(method)
-      has_key?(method.to_s) || has_key?(method.to_sym) || super(method)
+      has_key?(method.to_s) || has_key?(method.to_sym) || super
     end
 
   end # Store
