@@ -31,6 +31,15 @@ class Gaston
       super(method, *args, &block)
     end
 
+    def slice(*keys)
+      hash = {}
+      keys.each {|method|
+        hash[method] = self[method.to_s] if has_key? method.to_s
+        hash[method] = self[method.to_sym] if has_key? method.to_sym
+      }
+      hash
+    end
+
     # Implement respond_to?
     #
     # @since 0.0.1

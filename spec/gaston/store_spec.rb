@@ -2,14 +2,13 @@
 require 'spec_helper'
 
 describe Gaston::Store do
+  let!(:config) { {:config => 'test', 'config' => 'test'} }
   let(:store) { Gaston::Store.new({:config => 'test'})}
   let(:hash_store) { Gaston::Store.new({:values => 'test'})}
   let(:multi_store) do
-    Gaston::Store.new({:config => 'test',
-                       :nested => {:one => :level, :nested => {:two => ['warp', :zone]},
-                       :spk => {:one => :bim}
-    }
-    })
+    Gaston::Store.new({:nested => {:one => :level, :nested => {:two => ['warp', :zone]},
+                       :spk => {:one => :bim}}
+    }.merge(config))
   end
 
   describe 'one level store' do
@@ -61,6 +60,12 @@ describe Gaston::Store do
       multi_store.nested.spk.one.should eq :bim
     end
 
+  end
+
+  describe 'slice' do
+    it 'can be called' do
+      multi_store.slice(:config, 'config').should eq(config)
+    end
   end
 
 end
