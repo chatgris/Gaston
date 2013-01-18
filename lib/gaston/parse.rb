@@ -16,7 +16,8 @@ class Gaston
       @env = env
       @hash = files.inject({}) do |hash, file|
         parse(file)
-        hash.merge(deep_merge_hash(default_values, env_values))
+        h = deep_merge(hash, default_values)
+        deep_merge(h, env_values)
       end
     end
 
@@ -50,28 +51,30 @@ class Gaston
       @parse[@env] || {}
     end
 
-    # Deep merge on hash.
+    # _why deep merge
     #
-    # First hash will receive merge from second hash.
+    # @return Hash
     #
-    # @param [ Hash ]
-    # @param [ Hash ]
+    # @since 0.2.1
     #
-    # @return [ Hash]
-    #
-    # @since 0.0.2
-    #
-    def deep_merge_hash(hash1,hash2)
-      hash2.each_key do |k1|
-        if hash1.key?(k1) && hash2[k1].is_a?(Hash)
-          deep_merge_hash(hash1[k1],hash2[k1])
+    def deep_merge(store, other)
+      m = proc do |key, o, n|
+        if o.is_a?(Hash)
+          o.merge(n,&m)
         else
-          hash1[k1] = hash2[k1]
+          store[key] = n
         end
       end
-      hash1
+      store.merge(other, &m)
     end
 
+    # Parse yaml or json file.
+    #
+    # @param [ String ]
+    #
+    # @return [ Hash ]
+    #
+    # @since 0.2.0
     def parse(file)
       erb = ERB.new(File.read(file)).result
       if File.extname(file) == '.json'
