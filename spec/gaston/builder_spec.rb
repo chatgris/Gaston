@@ -8,9 +8,9 @@ describe Gaston::Builder do
   class HashStore < Hash
   end
 
-  let(:store) { Gaston::Builder.new(GastonSpecer, {:config => 'test'})}
-  let(:hash_store) { Gaston::Builder.new(HashStore, {:values => 'test'})}
-  let(:multi_store) do
+  let!(:store) { Gaston::Builder.new(GastonSpecer, {:config => 'test'})}
+  let!(:hash_store) { Gaston::Builder.new(HashStore, {:values => 'test'})}
+  let!(:multi_store) do
     Gaston::Builder.new(GastonSpecer, {:config => 'test',
                        :nested => {:one => :level, :nested => {:two => ['warp', :zone]},
                        :spk => {:one => :bim}
@@ -19,10 +19,6 @@ describe Gaston::Builder do
   end
 
   describe 'one level store' do
-    before do
-      store
-    end
-
     context 'existing method' do
       it 'should return value through method' do
         GastonSpecer.new.config.should eq('test')
@@ -35,7 +31,6 @@ describe Gaston::Builder do
     end
 
     context 'no method' do
-
       it 'should raise NoMethodError' do
         lambda {
           GastonSpecer.new.no_method
@@ -51,21 +46,12 @@ describe Gaston::Builder do
   end
 
   describe "methods defined on Hash" do
-    before do
-      hash_store
-    end
-
     it "should add values method" do
-      p HashStore.new.values
       HashStore.new.values.should be_empty
     end
   end
 
   describe 'multi level store' do
-    before do
-      multi_store
-    end
-
     it 'should be a Store' do
       GastonSpecer.new.nested.should be_a_kind_of GastonSpecer::Nested
     end
@@ -78,7 +64,5 @@ describe Gaston::Builder do
     it 'should return bim!' do
       GastonSpecer.new.nested.spk.one.should eq :bim
     end
-
   end
-
 end
