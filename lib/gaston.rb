@@ -1,11 +1,12 @@
 # encoding: utf-8
 require 'yaml'
 require 'singleton'
+require 'inflecto'
 
 class Gaston
   include Singleton
   require 'gaston/configuration'
-  require 'gaston/store'
+  require 'gaston/builder'
   require 'gaston/parse'
 
   # Parse yml config files, merge them, and store into
@@ -14,7 +15,7 @@ class Gaston
   # @since 0.0.1
   #
   def store
-    @store ||= Gaston::Store.new(hash_from_files)
+    @store ||= Gaston::Builder.new(self.class, hash_from_files)
   end
 
   class << self

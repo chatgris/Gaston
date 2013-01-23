@@ -14,5 +14,6 @@ Gem::Specification.new do |s|
   s.files        = `git ls-files README.md lib LICENSE`.split("\n")
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
+  s.add_dependency "inflecto"
   s.add_development_dependency "rspec", "~>2.8"
 end
