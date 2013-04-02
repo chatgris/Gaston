@@ -7,7 +7,7 @@ class Gaston
   require 'gaston/configuration'
   require 'gaston/store'
   require 'gaston/parse'
-  if defined?(Rails)
+  if defined?(Rails) && defined?(Rails::Generators)
     require 'gaston/generators/gaston/config_generator'
   end
 
