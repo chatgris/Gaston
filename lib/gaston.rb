@@ -8,6 +8,9 @@ class Gaston
   require 'gaston/configuration'
   require 'gaston/builder'
   require 'gaston/parse'
+  if defined?(Rails)
+    require 'gaston/generators/gaston/config_generator'
+  end
 
   # Parse yml config files, merge them, and store into
   # gaston::Store
