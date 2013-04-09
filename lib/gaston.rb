@@ -5,9 +5,9 @@ require 'inflecto'
 
 class Gaston
   include Singleton
-  require 'gaston/configuration'
-  require 'gaston/builder'
-  require 'gaston/parse'
+  require_relative 'gaston/configuration'
+  require_relative 'gaston/builder'
+  require_relative 'gaston/parse'
   if defined?(Rails) && defined?(Rails::Generators)
     require 'gaston/generators/gaston/config_generator'
   end
