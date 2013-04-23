@@ -11,7 +11,7 @@ end
 Benchmark.bm do |x|
   x.report {
     n.times do
-    Gaston.spk.norris
+      Gaston.spk.norris
     end
   }
 end
