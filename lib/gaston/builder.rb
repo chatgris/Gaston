@@ -6,11 +6,11 @@ class Gaston
         hash.each_with_object({}) do |(key, store), hsh|
           if store.is_a?(Hash)
             camelize = Inflecto.camelize(key)
-            klass = begin
-                      Inflecto.constantize("#{parent}::#{camelize}")
-                    rescue NameError
-                      parent.const_set camelize, Class.new(Hash)
-                    end
+            klass = if parent.const_defined? camelize, false
+              Inflecto.constantize("#{parent}::#{camelize}")
+            else
+              parent.const_set camelize, Class.new(Hash)
+            end
             store = klass[Gaston::Builder.new(klass, store)]
           end
           if parent.instance_methods.include? key.to_sym
