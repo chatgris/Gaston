@@ -53,7 +53,7 @@ describe Gaston::Builder do
 
   describe 'multi level store' do
     it 'should be a Store' do
-      GastonSpecer.new.nested.should be_a_kind_of GastonSpecer::Nested
+      GastonSpecer.new.nested.should be_a_kind_of GastonSpecer::GastonNested
     end
 
     it 'should be recursive' do

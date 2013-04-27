@@ -5,7 +5,7 @@ class Gaston
       def new(parent, hash={})
         hash.each_with_object({}) do |(key, store), hsh|
           if store.is_a?(Hash)
-            camelize = Inflecto.camelize(key)
+            camelize = "Gaston" + Inflecto.camelize(key)
             klass = if parent.const_defined? camelize, false
               Inflecto.constantize("#{parent}::#{camelize}")
             else

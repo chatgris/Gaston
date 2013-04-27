@@ -20,4 +20,8 @@ describe Gaston do
   it 'should be success' do
     Gaston.spk.norris.should eq "bim"
   end
+
+  it "should accept integer as key" do
+    Gaston.images_dispatcher.send("16").send("1").should eq 16
+  end
 end
