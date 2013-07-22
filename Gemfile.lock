@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gaston (0.4.1)
+    gaston (0.5.0)
       inflecto
 
 GEM
