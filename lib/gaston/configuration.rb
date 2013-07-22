@@ -23,6 +23,13 @@ class Gaston
         yield self
       end
 
+      def env=(env)
+        if env
+          @env = env
+        end
+        @env
+      end
+
       private
 
       # Set default values
