@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/chatgris/Gaston.png?branch=master)](https://travis-ci.org/chatgris/Gaston)
+
 # GASTON
 
 Gaston is a dead simple Ruby config store. Write your config in yaml files, and
