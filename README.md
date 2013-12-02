@@ -32,7 +32,7 @@ method, and specify config files with the `files` method. Default `env` is
 ``` ruby
 Gaston.configure do |gaston|
   gaston.env = Rails.env
-  gaston.files = Dir[Rails.root.join("config/gaston/**/*.yml")]
+  gaston.files = Dir[Rails.root.join("config/gaston/**/*.{yml,json}")]
 end
 ```
 
