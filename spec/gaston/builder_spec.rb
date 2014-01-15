@@ -12,7 +12,7 @@ describe Gaston::Builder do
   let!(:hash_store) { Gaston::Builder.new(HashStore, {:values => 'test'})}
   let!(:multi_store) do
     Gaston::Builder.new(GastonSpecer, {:config => 'test',
-                       :nested => {:one => :level, :nested => {:two => ['warp', :zone]},
+                       :nested => {:one => :level, :key => :value, class: 'this', :nested => {:two => ['warp', :zone]},
                        :spk => {:one => :bim}
     }
     })
@@ -52,10 +52,6 @@ describe Gaston::Builder do
   end
 
   describe 'multi level store' do
-    it 'should be a Store' do
-      GastonSpecer.new.nested.should be_a_kind_of GastonSpecer::GastonNested
-    end
-
     it 'should be recursive' do
       GastonSpecer.new.nested.one.should eq(:level)
       GastonSpecer.new.nested.nested.two.should eq(["warp", :zone])
@@ -63,6 +59,14 @@ describe Gaston::Builder do
 
     it 'should return bim!' do
       GastonSpecer.new.nested.spk.one.should eq :bim
+    end
+    
+    it "should not conflict with keywords" do
+      GastonSpecer.new.nested.should have_key(:class)
+    end
+    
+    it "should not conflict with Hash instance methods" do
+      GastonSpecer.new.nested.should have_key(:key)
     end
   end
 end
