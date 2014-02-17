@@ -12,7 +12,7 @@ end
 Benchmark.bm do |x|
   x.report {
     n.times do
-      Gaston.spk.norris
+      Gaston.the.quick.brown.fox.jumps.over.the.lazy
     end
   }
 end
