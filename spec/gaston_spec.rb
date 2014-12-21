@@ -24,4 +24,8 @@ describe Gaston do
   it "should accept integer as key" do
     Gaston.images_dispatcher.send("16").send("1").should eq 16
   end
+
+  it 'get environment as a string' do
+    Gaston.gaffe.should eq "bim"
+  end
 end

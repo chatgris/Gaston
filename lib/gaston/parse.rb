@@ -48,7 +48,7 @@ class Gaston
     # @since 0.0.2
     #
     def env_values
-      @parse[@env] || {}
+      @parse[@env] || @parse[@env.to_s] || {}
     end
 
     # _why deep merge
