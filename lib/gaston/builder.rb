@@ -9,7 +9,7 @@ class Gaston
             klass = if parent.const_defined? camelize, false
               Inflecto.constantize("#{parent}::#{camelize}")
             else
-              parent.const_set camelize, Class.new(Hash)
+              parent.const_set camelize, Class.new(Gaston::HashProxy)
             end
             store = klass[Gaston::Builder.new(klass, store)]
           end
